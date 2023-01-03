@@ -51,7 +51,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener{
         //score
         g.setColor(Color.blue);
         g.setFont(new Font("serif", Font.BOLD, 25));
-        g.drawString("Score :" + score, 590, 30);
+        g.drawString("" + score, 590, 30);
 
         //paddle
         g.setColor(Color.yellow);
