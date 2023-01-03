@@ -22,6 +22,7 @@ public class MapGenerator {
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
                 if (map[i][j] > 0) {
+                    //brick colour
                     g.setColor(Color.red);
                     g.fillRect(j * bricksWidth + 80, i * bricksHeight + 50, bricksWidth, bricksHeight);
 

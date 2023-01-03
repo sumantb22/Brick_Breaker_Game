@@ -35,20 +35,25 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener{
     }
 
     public void paint(Graphics g) {
+        //black canvas
         g.setColor(Color.black);
         g.fillRect(1, 1, 692, 592);
 
+        //bricks
         map.draw((Graphics2D) g);
 
+        //border
         g.setColor(Color.yellow);
         g.fillRect(0, 0, 3, 592);
         g.fillRect(0, 0, 692, 3);
         g.fillRect(691, 0, 3, 592);
 
-        g.setColor(Color.white);
+        //score
+        g.setColor(Color.blue);
         g.setFont(new Font("serif", Font.BOLD, 25));
-        g.drawString("" + score, 590, 30);
+        g.drawString("Score :" + score, 590, 30);
 
+        //paddle
         g.setColor(Color.yellow);
         g.fillRect(playerX, 550, 100, 8);
 
@@ -62,7 +67,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener{
             ballYdir = 0;
             g.setColor(Color.red);
             g.setFont(new Font("serif", Font.BOLD, 30));
-            g.drawString("    Game Over Score: " + score, 190, 300);
+            g.drawString("    Game Over! Score: " + score, 190, 300);
 
             g.setFont(new Font("serif", Font.BOLD, 30));
             g.drawString("   Press Enter to Restart", 190, 340);
@@ -73,7 +78,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener{
             ballXdir = -1;
             g.setColor(Color.red);
             g.setFont(new Font("serif",Font.BOLD,30));
-            g.drawString("    Game Over: "+score,190,300);
+            g.drawString("    You Won: "+score,190,300);
 
             g.setFont(new Font("serif", Font.BOLD, 30));
             g.drawString("   Press Enter to Restart", 190, 340);
@@ -91,7 +96,9 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener{
         Timer.start();
 
         if (play) {
-            if (new Rectangle(ballposX, ballposY, 20, 20).intersects(new Rectangle(playerX, 550, 100, 8))) {
+            Rectangle ballRect = new Rectangle(ballposX, ballposY, 20, 20);
+            Rectangle paddleRect = new Rectangle(playerX, 550, 100, 8);
+            if (ballRect.intersects(paddleRect)) {
                 ballYdir = -ballYdir;
             }
 
